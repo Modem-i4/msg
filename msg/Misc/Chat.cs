@@ -14,14 +14,16 @@ namespace msg
     public partial class Chat : UserControl
     {
         DB db;
-        public int Id { get; set; }
+        public int Id { get; private set; }
+        public bool isUnreaded { get; private set; }
         public Chat(int id, String name, int unreaded, DB db)
         {
             InitializeComponent();
             Id = id;
             user.Text = name;
             this.db = db;
-            this.unreaded.Text = (unreaded > 0) ? Convert.ToString(unreaded) : "";
+            isUnreaded = unreaded > 0;
+            this.unreaded.Text = isUnreaded ? Convert.ToString(unreaded) : "";
         }
 
         private void edit_Click(object sender, EventArgs e)

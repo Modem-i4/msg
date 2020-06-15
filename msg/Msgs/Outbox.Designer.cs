@@ -45,10 +45,11 @@
             this.container.Controls.Add(this.text);
             this.container.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.container.Location = new System.Drawing.Point(3, -8);
+            this.container.MaximumSize = new System.Drawing.Size(286, 0);
             this.container.Name = "container";
-            this.container.Padding = new System.Windows.Forms.Padding(3, 3, 0, 3);
+            this.container.Padding = new System.Windows.Forms.Padding(3, 3, 0, 0);
             this.container.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.container.Size = new System.Drawing.Size(286, 68);
+            this.container.Size = new System.Drawing.Size(286, 62);
             this.container.TabIndex = 0;
             this.container.TabStop = false;
             // 
@@ -89,10 +90,13 @@
             // text
             // 
             this.text.AutoSize = true;
-            this.text.Location = new System.Drawing.Point(8, 19);
-            this.text.MinimumSize = new System.Drawing.Size(275, 30);
+            this.text.Font = new System.Drawing.Font("Segoe UI Symbol", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.text.Location = new System.Drawing.Point(8, 30);
+            this.text.Margin = new System.Windows.Forms.Padding(0, 0, 8, 0);
+            this.text.MaximumSize = new System.Drawing.Size(275, 0);
+            this.text.MinimumSize = new System.Drawing.Size(275, 15);
             this.text.Name = "text";
-            this.text.Size = new System.Drawing.Size(275, 30);
+            this.text.Size = new System.Drawing.Size(275, 16);
             this.text.TabIndex = 0;
             this.text.Text = "Content";
             // 
@@ -118,7 +122,7 @@
             this.Controls.Add(this.container);
             this.MinimumSize = new System.Drawing.Size(475, 0);
             this.Name = "Outbox";
-            this.Size = new System.Drawing.Size(475, 63);
+            this.Size = new System.Drawing.Size(475, 60);
             this.container.ResumeLayout(false);
             this.container.PerformLayout();
             this.ResumeLayout(false);

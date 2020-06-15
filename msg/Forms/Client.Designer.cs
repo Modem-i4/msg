@@ -310,12 +310,12 @@
             // 
             this.emoji13.AutoSize = true;
             this.emoji13.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.emoji13.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.emoji13.Font = new System.Drawing.Font("Segoe UI Symbol", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.emoji13.Location = new System.Drawing.Point(393, 0);
             this.emoji13.Name = "emoji13";
             this.emoji13.Size = new System.Drawing.Size(29, 30);
             this.emoji13.TabIndex = 13;
-            this.emoji13.Text = "💀";
+            this.emoji13.Text = "😪";
             this.emoji13.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.emoji13.Click += new System.EventHandler(this.emoji_Click);
             // 
@@ -323,12 +323,12 @@
             // 
             this.emoji12.AutoSize = true;
             this.emoji12.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.emoji12.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.emoji12.Font = new System.Drawing.Font("Segoe UI Symbol", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.emoji12.Location = new System.Drawing.Point(363, 0);
             this.emoji12.Name = "emoji12";
             this.emoji12.Size = new System.Drawing.Size(24, 30);
             this.emoji12.TabIndex = 12;
-            this.emoji12.Text = "💀";
+            this.emoji12.Text = "😇";
             this.emoji12.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.emoji12.Click += new System.EventHandler(this.emoji_Click);
             // 
@@ -336,12 +336,12 @@
             // 
             this.emoji11.AutoSize = true;
             this.emoji11.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.emoji11.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.emoji11.Font = new System.Drawing.Font("Segoe UI Symbol", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.emoji11.Location = new System.Drawing.Point(333, 0);
             this.emoji11.Name = "emoji11";
             this.emoji11.Size = new System.Drawing.Size(24, 30);
             this.emoji11.TabIndex = 11;
-            this.emoji11.Text = "💀";
+            this.emoji11.Text = "😣";
             this.emoji11.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.emoji11.Click += new System.EventHandler(this.emoji_Click);
             // 
@@ -349,12 +349,12 @@
             // 
             this.emoji10.AutoSize = true;
             this.emoji10.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.emoji10.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.emoji10.Font = new System.Drawing.Font("Segoe UI Symbol", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.emoji10.Location = new System.Drawing.Point(303, 0);
             this.emoji10.Name = "emoji10";
             this.emoji10.Size = new System.Drawing.Size(24, 30);
             this.emoji10.TabIndex = 10;
-            this.emoji10.Text = "💀";
+            this.emoji10.Text = "😏";
             this.emoji10.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.emoji10.Click += new System.EventHandler(this.emoji_Click);
             // 
@@ -362,12 +362,12 @@
             // 
             this.emoji9.AutoSize = true;
             this.emoji9.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.emoji9.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.emoji9.Font = new System.Drawing.Font("Segoe UI Symbol", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.emoji9.Location = new System.Drawing.Point(273, 0);
             this.emoji9.Name = "emoji9";
             this.emoji9.Size = new System.Drawing.Size(24, 30);
             this.emoji9.TabIndex = 9;
-            this.emoji9.Text = "💀";
+            this.emoji9.Text = "😶";
             this.emoji9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.emoji9.Click += new System.EventHandler(this.emoji_Click);
             // 
@@ -375,12 +375,12 @@
             // 
             this.emoji8.AutoSize = true;
             this.emoji8.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.emoji8.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.emoji8.Font = new System.Drawing.Font("Segoe UI Symbol", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.emoji8.Location = new System.Drawing.Point(243, 0);
             this.emoji8.Name = "emoji8";
             this.emoji8.Size = new System.Drawing.Size(24, 30);
             this.emoji8.TabIndex = 8;
-            this.emoji8.Text = "💀";
+            this.emoji8.Text = "😐";
             this.emoji8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.emoji8.Click += new System.EventHandler(this.emoji_Click);
             // 
@@ -388,12 +388,12 @@
             // 
             this.emoji7.AutoSize = true;
             this.emoji7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.emoji7.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.emoji7.Font = new System.Drawing.Font("Segoe UI Symbol", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.emoji7.Location = new System.Drawing.Point(213, 0);
             this.emoji7.Name = "emoji7";
             this.emoji7.Size = new System.Drawing.Size(24, 30);
             this.emoji7.TabIndex = 7;
-            this.emoji7.Text = "💀";
+            this.emoji7.Text = "😐";
             this.emoji7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.emoji7.Click += new System.EventHandler(this.emoji_Click);
             // 
@@ -401,12 +401,12 @@
             // 
             this.emoji6.AutoSize = true;
             this.emoji6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.emoji6.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.emoji6.Font = new System.Drawing.Font("Segoe UI Symbol", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.emoji6.Location = new System.Drawing.Point(183, 0);
             this.emoji6.Name = "emoji6";
             this.emoji6.Size = new System.Drawing.Size(24, 30);
             this.emoji6.TabIndex = 6;
-            this.emoji6.Text = "💀";
+            this.emoji6.Text = "😐";
             this.emoji6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.emoji6.Click += new System.EventHandler(this.emoji_Click);
             // 
@@ -414,12 +414,12 @@
             // 
             this.emoji5.AutoSize = true;
             this.emoji5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.emoji5.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.emoji5.Font = new System.Drawing.Font("Segoe UI Symbol", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.emoji5.Location = new System.Drawing.Point(153, 0);
             this.emoji5.Name = "emoji5";
             this.emoji5.Size = new System.Drawing.Size(24, 30);
             this.emoji5.TabIndex = 5;
-            this.emoji5.Text = "💀";
+            this.emoji5.Text = "😐";
             this.emoji5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.emoji5.Click += new System.EventHandler(this.emoji_Click);
             // 
@@ -427,12 +427,12 @@
             // 
             this.emoji4.AutoSize = true;
             this.emoji4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.emoji4.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.emoji4.Font = new System.Drawing.Font("Segoe UI Symbol", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.emoji4.Location = new System.Drawing.Point(123, 0);
             this.emoji4.Name = "emoji4";
             this.emoji4.Size = new System.Drawing.Size(24, 30);
             this.emoji4.TabIndex = 4;
-            this.emoji4.Text = "💀";
+            this.emoji4.Text = "😐";
             this.emoji4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.emoji4.Click += new System.EventHandler(this.emoji_Click);
             // 
@@ -440,12 +440,12 @@
             // 
             this.emoji3.AutoSize = true;
             this.emoji3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.emoji3.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.emoji3.Font = new System.Drawing.Font("Segoe UI Symbol", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.emoji3.Location = new System.Drawing.Point(93, 0);
             this.emoji3.Name = "emoji3";
             this.emoji3.Size = new System.Drawing.Size(24, 30);
             this.emoji3.TabIndex = 3;
-            this.emoji3.Text = "💀";
+            this.emoji3.Text = "😐";
             this.emoji3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.emoji3.Click += new System.EventHandler(this.emoji_Click);
             // 
@@ -453,12 +453,12 @@
             // 
             this.emoji2.AutoSize = true;
             this.emoji2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.emoji2.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.emoji2.Font = new System.Drawing.Font("Segoe UI Symbol", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.emoji2.Location = new System.Drawing.Point(63, 0);
             this.emoji2.Name = "emoji2";
             this.emoji2.Size = new System.Drawing.Size(24, 30);
             this.emoji2.TabIndex = 2;
-            this.emoji2.Text = "💀";
+            this.emoji2.Text = "😐";
             this.emoji2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.emoji2.Click += new System.EventHandler(this.emoji_Click);
             // 
@@ -466,12 +466,12 @@
             // 
             this.emoji1.AutoSize = true;
             this.emoji1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.emoji1.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.emoji1.Font = new System.Drawing.Font("Segoe UI Symbol", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.emoji1.Location = new System.Drawing.Point(33, 0);
             this.emoji1.Name = "emoji1";
             this.emoji1.Size = new System.Drawing.Size(24, 30);
             this.emoji1.TabIndex = 1;
-            this.emoji1.Text = "💀";
+            this.emoji1.Text = "😐";
             this.emoji1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.emoji1.Click += new System.EventHandler(this.emoji_Click);
             // 
@@ -479,12 +479,12 @@
             // 
             this.emoji0.AutoSize = true;
             this.emoji0.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.emoji0.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.emoji0.Font = new System.Drawing.Font("Segoe UI Symbol", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.emoji0.Location = new System.Drawing.Point(3, 0);
             this.emoji0.Name = "emoji0";
             this.emoji0.Size = new System.Drawing.Size(24, 30);
             this.emoji0.TabIndex = 0;
-            this.emoji0.Text = "💀";
+            this.emoji0.Text = "😐";
             this.emoji0.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.emoji0.Click += new System.EventHandler(this.emoji_Click);
             // 

@@ -35,6 +35,7 @@ namespace msg
                 {
                     if (db.CheckForNotifications())
                     {
+                        (new System.Media.SoundPlayer(Properties.Resources.Notification)).Play();
                         Invoke(new MethodInvoker(ChatsInnit));
                     }
                 }
@@ -44,32 +45,44 @@ namespace msg
         }
         private void ChatsInnit()
         {
-            chatsLayout.Controls.Clear();
             Chat[] chat = db.LoadChats();
-            chatsLayout.Controls.AddRange(chat);
             foreach (Chat ch in chat)
             {
-                ch.Click += new EventHandler(openChat);
-                if (ch.Id == db.ChatId)
+                ch.Click += new EventHandler(clearChat) + new EventHandler(openChat);
+                if (ch.Id == db.ChatId && ch.isUnreaded)
+                {
                     openChat(ch, new EventArgs());
+                    return;
+                }
             }
+            chatsLayout.Controls.Clear();
+            chatsLayout.Controls.AddRange(chat);
         }
 
+        private void clearChat(object sender, EventArgs e)
+        {
+            msgsLayout.Controls.Clear();
+        }
         private void openChat(object sender, EventArgs e)
         {
             // local info introduction
             setExtraChatInfo((Chat)sender);
+            msgBox.Clear();
             //fill layout
-            msgsLayout.Controls.Clear();
-            msgsLayout.Controls.AddRange(db.LoadMsgs((sender as Chat).Id));
-            // set scroll to last unreadeds
+            Messages[] msg = db.LoadMsgs((sender as Chat).Id);
             int newMsgAm = db.GetNewMessagesAmount();
+            for(int i = msgsLayout.Controls.Count; i < msg.Length; i++)
+            {
+                msgsLayout.Controls.Add(msg[i]);
+            }
+            // set scroll to last unreadeds
             msgsLayout.ScrollControlIntoView(msgsLayout.Controls[msgsLayout.Controls.Count - newMsgAm - (newMsgAm == 0 ? 1 : 0)]);
-            msgsLayout.Focus();
+            msgBox.Focus();
         }
         private void send_Click(object sender, EventArgs e)
         {
-            if(msgBox.Text.Replace(" ","").Replace("\n","").Length > 0)
+            msgBox.Text = msgBox.Text.Trim('\n');
+            if (msgBox.Text.Replace(" ","").Length > 0)
             {
                 if (db.SendMsg(msgBox.Text))
                 {
@@ -82,6 +95,7 @@ namespace msg
                 else
                     MessageBox.Show("Перевірте з'єднання");
             }
+            msgBox.Text = msgBox.Text.Trim('\n');
         }
         private void emoji_Click(object sender, EventArgs e)
         {

@@ -12,7 +12,7 @@ namespace msg
 {
     public partial class Outbox : Messages
     {
-        public int Id { get; set; }
+        public int Id { get; private set; }
         DB db;
         public Outbox(String text, String time, int id, DB db)
         {
@@ -34,6 +34,7 @@ namespace msg
 
         private void edit_Click(object sender, EventArgs e)
         {
+            // not today
         }
     }
 }
