@@ -47,7 +47,7 @@
             this.header.Name = "header";
             this.header.Size = new System.Drawing.Size(323, 35);
             this.header.TabIndex = 3;
-            this.header.Text = "Enter group chat name";
+            this.header.Text = "Enter chatname";
             this.header.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // input
@@ -118,6 +118,7 @@
             this.cancel.TabIndex = 3;
             this.cancel.Text = "Cancel";
             this.cancel.UseVisualStyleBackColor = true;
+            this.cancel.Click += new System.EventHandler(this.cancel_Click);
             // 
             // forEveryoneCheck
             // 
@@ -140,7 +141,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.Name = "GropNameEditInput";
-            this.Text = "GropNameEditInput";
+            this.Text = "Chatname edit";
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.tableLayoutPanel2.ResumeLayout(false);

@@ -30,5 +30,10 @@ namespace msg.InputForms
                 MessageBox.Show("Назва групи повинна містити принаймні 3 символа", "You.NET messager", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
+
+        private void cancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

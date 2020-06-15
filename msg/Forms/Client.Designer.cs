@@ -553,7 +553,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.Name = "Client";
-            this.Text = "Client";
+            this.Text = "You.NET";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Client_FormClosed);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);

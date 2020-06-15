@@ -128,7 +128,7 @@
             this.MaximizeBox = false;
             this.Name = "InputForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "InputForm";
+            this.Text = "Input form";
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.tableLayoutPanel2.ResumeLayout(false);
