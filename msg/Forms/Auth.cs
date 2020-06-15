@@ -16,7 +16,7 @@ namespace msg
         public Auth()
         {
             InitializeComponent();
-            db.Innit();
+            //db.Innit();
         }
 
         private void loginBtn_Click(object sender, EventArgs e)
