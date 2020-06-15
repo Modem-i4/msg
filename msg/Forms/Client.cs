@@ -14,13 +14,18 @@ namespace msg
     public partial class Client : Form
     {
         private DB db;
-        public Client(DB db)
+        private Thread notificationChecker;
+        private Auth auth;
+        public Client(DB db, Auth auth)
         {
             this.db = db;
             InitializeComponent();
             login.Text = db.UserLogin;
             ChatsInnit();
-            (new Thread(new ThreadStart(CheckForNotifications))).Start();
+            notificationChecker = new Thread(new ThreadStart(CheckForNotifications));
+            notificationChecker.Start();
+            this.auth = auth;
+            auth.Hide();
         }
         private void CheckForNotifications()
         {
@@ -116,6 +121,12 @@ namespace msg
         private void logout_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void Client_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            notificationChecker.Abort();
+            auth.Show();
         }
     }
 }

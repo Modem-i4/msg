@@ -123,6 +123,7 @@
             this.Controls.Add(this.loginTb);
             this.Controls.Add(this.passwordTb);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "Auth";
             this.Text = "Авторизація";
             this.ResumeLayout(false);

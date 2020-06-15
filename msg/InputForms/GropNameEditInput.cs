@@ -20,8 +20,15 @@ namespace msg.InputForms
 
         private void ok_Click(object sender, EventArgs e)
         {
-            DialogResult = DialogResult.OK;
-            this.Close();
+            if(input.Text.Length >= 3)
+            {
+                DialogResult = DialogResult.OK;
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("Назва групи повинна містити принаймні 3 символа", "You.NET messager", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
     }
 }

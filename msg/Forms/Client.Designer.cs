@@ -57,9 +57,9 @@
             this.emoji1 = new System.Windows.Forms.Label();
             this.emoji0 = new System.Windows.Forms.Label();
             this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
-            this.chatName = new System.Windows.Forms.Label();
-            this.participants = new System.Windows.Forms.Label();
             this.logout = new System.Windows.Forms.Button();
+            this.participants = new System.Windows.Forms.Label();
+            this.chatName = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
@@ -507,30 +507,6 @@
             this.tableLayoutPanel8.Size = new System.Drawing.Size(504, 41);
             this.tableLayoutPanel8.TabIndex = 2;
             // 
-            // chatName
-            // 
-            this.chatName.AutoSize = true;
-            this.chatName.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.chatName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.chatName.Location = new System.Drawing.Point(3, 0);
-            this.chatName.Name = "chatName";
-            this.chatName.Size = new System.Drawing.Size(161, 41);
-            this.chatName.TabIndex = 3;
-            this.chatName.Text = "ChatName";
-            this.chatName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // participants
-            // 
-            this.participants.AutoSize = true;
-            this.participants.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.participants.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.participants.Location = new System.Drawing.Point(170, 0);
-            this.participants.Name = "participants";
-            this.participants.Size = new System.Drawing.Size(161, 41);
-            this.participants.TabIndex = 4;
-            this.participants.Text = "0 participants";
-            this.participants.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            // 
             // logout
             // 
             this.logout.Anchor = System.Windows.Forms.AnchorStyles.Right;
@@ -543,6 +519,30 @@
             this.logout.UseVisualStyleBackColor = true;
             this.logout.Click += new System.EventHandler(this.logout_Click);
             // 
+            // participants
+            // 
+            this.participants.AutoSize = true;
+            this.participants.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.participants.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.participants.Location = new System.Drawing.Point(171, 0);
+            this.participants.Name = "participants";
+            this.participants.Size = new System.Drawing.Size(162, 41);
+            this.participants.TabIndex = 4;
+            this.participants.Text = "0 participants";
+            this.participants.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            // 
+            // chatName
+            // 
+            this.chatName.AutoSize = true;
+            this.chatName.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.chatName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.chatName.Location = new System.Drawing.Point(3, 0);
+            this.chatName.Name = "chatName";
+            this.chatName.Size = new System.Drawing.Size(162, 41);
+            this.chatName.TabIndex = 3;
+            this.chatName.Text = "ChatName";
+            this.chatName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // Client
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -550,8 +550,11 @@
             this.BackColor = System.Drawing.Color.FloralWhite;
             this.ClientSize = new System.Drawing.Size(723, 408);
             this.Controls.Add(this.tableLayoutPanel1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "Client";
             this.Text = "Client";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Client_FormClosed);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel4.ResumeLayout(false);

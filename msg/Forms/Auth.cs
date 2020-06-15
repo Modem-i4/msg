@@ -28,7 +28,7 @@ namespace msg
                     if (db.Login(loginTb.Text, passwordTb.Text))
                     {
                         passwordTb.Text = "";
-                        (new Client(db)).ShowDialog();
+                        (new Client(db, this)).ShowDialog();
                     }
                     else
                         Say("Пароль неправильний");
@@ -48,7 +48,7 @@ namespace msg
                     if (db.Register(loginTb.Text, passwordTb.Text))
                     {
                         passwordTb.Text = "";
-                        (new Client(db)).ShowDialog();
+                        (new Client(db, this)).ShowDialog();
                     }
                     else
                         Say("Перевірте підключення");
