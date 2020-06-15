@@ -86,7 +86,7 @@ namespace msg
                     String senderLogin = reader.GetString("login");
                     String msgText = reader.GetString("text");
                     DateTime time = reader.GetDateTime("time");
-                    // 
+                    // setup data
                     m.Add(displayNewDateIfRequired(time));
                     // msgs
                     if (senderId == UserId)
@@ -114,7 +114,7 @@ namespace msg
                 conn.Open();
                 if (new MySqlCommand($"INSERT INTO `msg`(chat_id, sender_id, text) VALUES ({ChatId}, {UserId}, '{text}')", conn).ExecuteNonQuery() == 0
             || new MySqlCommand($"UPDATE `chat` SET new_msgs = new_msgs + 1 WHERE(chat_id = {ChatId} AND user_id != {UserId})", conn).ExecuteNonQuery() == 0
-            || !TriggerChattersUpdate(ChatId))
+            || !TriggerChattersUpdate(ChatId, conn))
                     return false;
                 return true;
             }
@@ -143,12 +143,12 @@ namespace msg
             using(MySqlConnection conn = new MySqlConnection(connStr))
             {
                 conn.Open();
-                int chatId = GetFollowingChatId();
-                if (!CreateChat(participantId, chatId, UserLogin) || !CreateChat(UserId, chatId, GetUsernameById(participantId)))
+                int chatId = GetFollowingChatId(conn);
+                if (!CreateChat(participantId, chatId, UserLogin) || !CreateChat(UserId, chatId, GetUsernameById(participantId, conn)))
                     // створення автоназваних екземплярів чатів для обох учасників
                     return false;
                 ChatId = chatId;
-                InsertInfoMsg(ChatId, $"Чат розпочато");
+                InsertInfoMsg(ChatId, $"Чат розпочато", conn);
                 return true;
             }
         }
@@ -157,14 +157,14 @@ namespace msg
             using(MySqlConnection conn = new MySqlConnection(connStr))
             {
                 conn.Open();
-                int chatId = GetFollowingChatId();
+                int chatId = GetFollowingChatId(conn);
                 foreach (var id in participantIds)
                 {
                     if (!CreateChat(id, chatId, chatname))
                         return false;
                 }
                 ChatId = chatId;
-                InsertInfoMsg(ChatId, $"{UserLogin} створив чат!");
+                InsertInfoMsg(ChatId, $"{UserLogin} створив чат!", conn);
                 return true;
             }
         }
@@ -250,27 +250,19 @@ namespace msg
                 conn.Open();
                 if (new MySqlCommand($"DELETE FROM `chat` WHERE (chat_id = {id} AND user_id = {UserId})", conn).ExecuteNonQuery() == 0)
                     return false;
-                InsertInfoMsg(id, $"{UserLogin} покинув чат");
+                InsertInfoMsg(id, $"{UserLogin} покинув чат", conn);
                 return true;
             }
         }
 
         // COMMON //
-        public String GetUsernameById(int id)
+        public String GetUsernameById(int id, MySqlConnection conn)
         {
-            using(MySqlConnection conn = new MySqlConnection(connStr))
-            {
-                conn.Open();
                 return (String)new MySqlCommand($"SELECT login FROM `user` WHERE id = {id}", conn).ExecuteScalar();
-            }
         }
-        public int GetFollowingChatId()
+        public int GetFollowingChatId(MySqlConnection conn)
         {
-            using(MySqlConnection conn = new MySqlConnection(connStr))
-            {
-                conn.Open();
-                return (int)new MySqlCommand($"SELECT chat_id FROM `chat` ORDER BY chat_id DESC LIMIT 1", conn).ExecuteScalar() + 1;
-            }
+            return (int)new MySqlCommand($"SELECT chat_id FROM `chat` ORDER BY chat_id DESC LIMIT 1", conn).ExecuteScalar() + 1;
         }
         public int GetSentMsgId()
         {
@@ -288,41 +280,29 @@ namespace msg
                 return (int)new MySqlCommand($"SELECT new_msgs FROM `chat` WHERE (chat_id = {ChatId} AND user_id = {UserId})", conn).ExecuteScalar();
             }
         }
-        private bool InsertInfoMsg(int chatId, String text)
+        private bool InsertInfoMsg(int chatId, String text, MySqlConnection conn)
         {
-            using(MySqlConnection conn = new MySqlConnection(connStr))
-            {
-                conn.Open();
-                if (new MySqlCommand($"INSERT INTO `msg`(chat_id, sender_id, text) VALUES ({chatId}, 0, '{text}')", conn).ExecuteNonQuery() == 0
-                || TriggerChattersUpdate(chatId))
-                    return false;
-                return true;
-            }
+            if (new MySqlCommand($"INSERT INTO `msg`(chat_id, sender_id, text) VALUES ({chatId}, 0, '{text}')", conn).ExecuteNonQuery() == 0
+            || TriggerChattersUpdate(chatId, conn))
+                return false;
+            return true;
         }
-        private bool TriggerChattersUpdate(int chatId)
+        private bool TriggerChattersUpdate(int chatId, MySqlConnection conn)
         {
-            using(MySqlConnection conn = new MySqlConnection(connStr))
-            {
-                conn.Open();
-                if (new MySqlCommand($"UPDATE `user`, `chat` SET hasNewMsg = TRUE WHERE(user.id = chat.user_id AND chat.chat_id = {chatId} AND user.id != {UserId})", conn).ExecuteNonQuery() == 0)
-                    return false;
-                return true;
-            }
+            if (new MySqlCommand($"UPDATE `user`, `chat` SET hasNewMsg = TRUE WHERE(user.id = chat.user_id AND chat.chat_id = {chatId} AND user.id != {UserId})", conn).ExecuteNonQuery() == 0)
+                return false;
+            return true;
         }
         public int lastMsgDate = -1;
         public ChatInfo displayNewDateIfRequired(DateTime date)
         {
-            using(MySqlConnection conn = new MySqlConnection(connStr))
+            ChatInfo ch = null;
+            if (lastMsgDate != date.DayOfYear)
             {
-                conn.Open();
-                ChatInfo ch = null;
-                if (lastMsgDate != date.DayOfYear)
-                {
-                    ch = new ChatInfo(date.ToString("dddd, dd MMMM"));
-                }
-                lastMsgDate = date.DayOfYear;
-                return ch;
+                ch = new ChatInfo(date.ToString("dddd, dd MMMM"));
             }
+            lastMsgDate = date.DayOfYear;
+            return ch;
         }
     }
 }

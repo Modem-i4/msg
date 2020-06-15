@@ -61,7 +61,10 @@ namespace msg
             else if(selectedUsers.Count == 2 )
             {
                 if(db.CreatePrivateChat(selectedUsers[1]))
+                {
+                    DialogResult = DialogResult.OK;
                     this.Close();
+                }
                 else 
                     MessageBox.Show("Помилка з'єднання", "You.NET messager", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
@@ -73,7 +76,10 @@ namespace msg
                 if(f.DialogResult == DialogResult.OK)
                 {
                     if (db.CreatePublicChat(selectedUsers.ToArray(), f.input.Text))
+                    {
+                        DialogResult = DialogResult.OK;
                         this.Close();
+                    }
                     else 
                         MessageBox.Show("Помилка з'єднання", "You.NET messager", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }

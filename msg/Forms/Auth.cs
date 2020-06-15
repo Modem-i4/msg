@@ -16,7 +16,6 @@ namespace msg
         public Auth()
         {
             InitializeComponent();
-            //db.Innit();
         }
 
         private void loginBtn_Click(object sender, EventArgs e)
@@ -61,19 +60,16 @@ namespace msg
         }
         private bool CheckFill()
         {
+            loginTb.Text = loginTb.Text.Replace("'", "’");
+            passwordTb.Text = passwordTb.Text.Replace("'", "’");
             if (loginTb.Text.Length < 3)
             {
-                Say("Логін поваинен містити принаймні 3 символи");
+                Say("Логін повинен містити принаймні 3 символи");
                 return false;
             }
             else if (passwordTb.Text.Length < 3)
             {
-                Say("Пароль поваинен містити принаймні 3 символи");
-                return false;
-            }
-            else if(loginTb.Text.Contains("'") || passwordTb.Text.Contains("'"))
-            {
-                Say("Символ одинарних лапок ( ' ) заборонено");
+                Say("Пароль повинен містити принаймні 3 символи");
                 return false;
             }
             return true;

@@ -21,7 +21,7 @@ namespace msg
             this.db = db;
             InitializeComponent();
             login.Text = db.UserLogin;
-            ChatsInnit();
+            ChatsInnit(false);
             notificationChecker = new Thread(new ThreadStart(CheckForNotifications));
             notificationChecker.Start();
             this.auth = auth;
@@ -36,14 +36,15 @@ namespace msg
                     if (db.CheckForNotifications())
                     {
                         (new System.Media.SoundPlayer(Properties.Resources.Notification)).Play();
-                        Invoke(new MethodInvoker(ChatsInnit));
+                        Invoke(new MethodInvoker(() => ChatsInnit(false)));
+                        //Invoke(new MethodInvoker(ChatsInnit));
                     }
                 }
                 catch { };
                 Thread.Sleep(333);
             }
         }
-        private void ChatsInnit()
+        private void ChatsInnit(bool isChatNew)
         {
             Chat[] chat = db.LoadChats();
             foreach (Chat ch in chat)
@@ -52,7 +53,8 @@ namespace msg
                 if (ch.Id == db.ChatId && ch.isUnreaded)
                 {
                     openChat(ch, new EventArgs());
-                    return;
+                    if (!isChatNew)
+                        return;
                 }
             }
             chatsLayout.Controls.Clear();
@@ -62,12 +64,12 @@ namespace msg
         private void clearChat(object sender, EventArgs e)
         {
             msgsLayout.Controls.Clear();
+            msgBox.Clear();
         }
         private void openChat(object sender, EventArgs e)
         {
             // local info introduction
             setExtraChatInfo((Chat)sender);
-            msgBox.Clear();
             //fill layout
             Messages[] msg = db.LoadMsgs((sender as Chat).Id);
             int newMsgAm = db.GetNewMessagesAmount();
@@ -84,7 +86,7 @@ namespace msg
             msgBox.Text = msgBox.Text.Trim('\n');
             if (msgBox.Text.Replace(" ","").Length > 0)
             {
-                if (db.SendMsg(msgBox.Text))
+                if (db.SendMsg(msgBox.Text.Replace("'", "’")))
                 {
                     msgsLayout.Controls.Add(db.displayNewDateIfRequired(DateTime.Now));
                     var m = new Outbox(msgBox.Text, DateTime.Now.ToString("HH:mm:ss"), db.GetSentMsgId(), db);
@@ -124,8 +126,8 @@ namespace msg
 
         private void addChat_Click(object sender, EventArgs e)
         {
-            (new AddChat(db)).ShowDialog();
-            ChatsInnit();
+            if((new AddChat(db)).ShowDialog() == DialogResult.OK)
+                ChatsInnit(true);
         }
 
         private void attach_Click(object sender, EventArgs e)
