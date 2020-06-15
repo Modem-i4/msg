@@ -23,15 +23,10 @@ namespace msg
         }
         private void LoadUsers()
         {
-            var reader = db.LoadUsers(search.Text);
-            while (reader.Read())
-            {
-                int id = reader.GetInt32("id");
-                var c = new Users(id, reader.GetString("login"), selectedUsers.Contains(id));
-                usersFlow.Controls.Add(c);
-                c.add.Click += AddUser; //EventHandler
-            }
-            reader.Close();
+            Users[] users = db.LoadUsers(search.Text, selectedUsers.ToArray());
+            usersFlow.Controls.AddRange(users);
+            foreach (var c in users)
+                c.add.Click += AddUser;
         }
         private void search_TextChanged(object sender, EventArgs e)
         {

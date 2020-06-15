@@ -14,7 +14,6 @@ namespace msg
     public partial class Client : Form
     {
         private DB db;
-        private int lastMsgDate = 0;
         public Client(DB db)
         {
             this.db = db;
@@ -41,49 +40,24 @@ namespace msg
         private void ChatsInnit()
         {
             chatsLayout.Controls.Clear();
-            var reader = db.LoadChats();
-            while(reader.Read())
+            Chat[] chat = db.LoadChats();
+            chatsLayout.Controls.AddRange(chat);
+            foreach (Chat ch in chat)
             {
-                var ch = new Chat(reader.GetInt32("chat_id"), reader.GetString("chat_name"), reader.GetInt32("new_msgs"), db);
-                chatsLayout.Controls.Add(ch);
                 ch.Click += new EventHandler(openChat);
-            }
-            reader.Close();
-            foreach (Chat ch in chatsLayout.Controls)
                 if (ch.Id == db.ChatId)
                     openChat(ch, new EventArgs());
+            }
         }
 
         private void openChat(object sender, EventArgs e)
         {
+            // local info introduction
             setExtraChatInfo((Chat)sender);
             //fill layout
-            var reader = db.LoadMsgs((sender as Chat).Id);
             msgsLayout.Controls.Clear();
-            Messages m;
-            while (reader.Read())
-            {
-                int senderId = reader.GetInt32("id");
-                String senderLogin = reader.GetString("login");
-                String msgText = reader.GetString("text");
-                DateTime time = reader.GetDateTime("time");
-                displayNewDateIfRequired(time);
-                if (senderId == db.UserId)
-                {
-                    m = new Outbox(msgText, time.ToString("HH:mm:ss"), reader.GetInt32("msg_id"), db);
-                }
-                else if(senderId == 0)
-                {
-                    m = new ChatInfo(msgText);
-                }
-                else
-                {
-                    m = new Inbox(senderLogin, msgText, time.ToString("HH:mm:ss"));
-                    m.Anchor = AnchorStyles.Right;
-                }
-                msgsLayout.Controls.Add(m);
-            }
-            reader.Close();
+            msgsLayout.Controls.AddRange(db.LoadMsgs((sender as Chat).Id));
+            // set scroll to last unreadeds
             int newMsgAm = db.GetNewMessagesAmount();
             msgsLayout.ScrollControlIntoView(msgsLayout.Controls[msgsLayout.Controls.Count - newMsgAm - (newMsgAm == 0 ? 1 : 0)]);
             msgsLayout.Focus();
@@ -94,7 +68,7 @@ namespace msg
             {
                 if (db.SendMsg(msgBox.Text))
                 {
-                    displayNewDateIfRequired(DateTime.Now);
+                    msgsLayout.Controls.Add(db.displayNewDateIfRequired(DateTime.Now));
                     var m = new Outbox(msgBox.Text, DateTime.Now.ToString("HH:mm:ss"), db.GetSentMsgId(), db);
                     msgsLayout.Controls.Add(m);
                     msgBox.Clear();
@@ -103,14 +77,6 @@ namespace msg
                 else
                     MessageBox.Show("Перевірте з'єднання");
             }
-        }
-        private void displayNewDateIfRequired(DateTime date)
-        {
-            if (lastMsgDate != date.DayOfYear)
-            {
-                msgsLayout.Controls.Add(new ChatInfo(date.ToString("dddd, dd MMMM")));
-            }
-            lastMsgDate = date.DayOfYear;
         }
         private void emoji_Click(object sender, EventArgs e)
         {

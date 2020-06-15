@@ -70,15 +70,47 @@ namespace msg
         }
         // AUTH end //
         // LOAD CHATS //
-        public MySqlDataReader LoadChats()
+        public Chat[] LoadChats()
         {
-            return new MySqlCommand($"SELECT max(msg.time) AS time, chat.chat_id, chat.chat_name, chat.new_msgs FROM `chat` INNER JOIN `msg` ON chat.chat_id = msg.chat_id WHERE (user_id = {UserId}) GROUP BY chat.chat_id ORDER BY time DESC", conn).ExecuteReader();
+            var reader = new MySqlCommand($"SELECT max(msg.time) AS time, chat.chat_id, chat.chat_name, chat.new_msgs FROM `chat` INNER JOIN `msg` ON chat.chat_id = msg.chat_id WHERE (user_id = {UserId}) GROUP BY chat.chat_id ORDER BY time DESC", conn).ExecuteReader();
+            List<Chat> chats = new List<Chat>();
+            while (reader.Read())
+            {
+                chats.Add(new Chat(reader.GetInt32("chat_id"), reader.GetString("chat_name"), reader.GetInt32("new_msgs"), this));
+            }
+            reader.Close();
+            return chats.ToArray();
         }
         // LOAD MSGS //
-        public MySqlDataReader LoadMsgs(int chatId)
+        public Messages[] LoadMsgs(int chatId)
         {
             ChatId = chatId;
-            return new MySqlCommand($"SELECT user.id, user.login, msg.id AS msg_id, msg.text, msg.time FROM `msg` INNER JOIN `user` ON (user.id = sender_id) WHERE (chat_id = {chatId})", conn).ExecuteReader();
+            var reader = new MySqlCommand($"SELECT user.id, user.login, msg.id AS msg_id, msg.text, msg.time FROM `msg` INNER JOIN `user` ON (user.id = sender_id) WHERE (chat_id = {chatId})", conn).ExecuteReader();
+            List<Messages> m = new List<Messages>();
+            while (reader.Read())
+            {
+                int senderId = reader.GetInt32("id");
+                String senderLogin = reader.GetString("login");
+                String msgText = reader.GetString("text");
+                DateTime time = reader.GetDateTime("time");
+                // 
+                m.Add(displayNewDateIfRequired(time));
+                // msgs
+                if (senderId == UserId)
+                {
+                    m.Add(new Outbox(msgText, time.ToString("HH:mm:ss"), reader.GetInt32("msg_id"), this));
+                }
+                else if (senderId == 0)
+                {
+                    m.Add(new ChatInfo(msgText));
+                }
+                else
+                {
+                    m.Add(new Inbox(senderLogin, msgText, time.ToString("HH:mm:ss")));
+                }
+            }
+            reader.Close();
+            return m.ToArray();
         }
         // SEND MSG //
         public bool SendMsg(String text)
@@ -90,9 +122,18 @@ namespace msg
             return true;
         }
         // ADD CHAT //
-        public MySqlDataReader LoadUsers(String search)
+        public Users[] LoadUsers(String search, int[] selectedUsers) 
         {
-            return new MySqlCommand($"SELECT id, login FROM `user` WHERE (login LIKE '%{search}%' AND id != 0 AND id != {UserId})", conn).ExecuteReader();
+            var reader = new MySqlCommand($"SELECT id, login FROM `user` WHERE (login LIKE '%{search}%' AND id != 0 AND id != {UserId})", conn).ExecuteReader();
+            List<Users> users = new List<Users>();
+            while (reader.Read())
+            {
+                int id = reader.GetInt32("id");
+                var c = new Users(id, reader.GetString("login"), selectedUsers.Contains(id));
+                users.Add(c);
+            }
+            reader.Close();
+            return users.ToArray();
         }
         // CREATE CHAT //
         public bool CreatePrivateChat(int participantId)
@@ -201,6 +242,17 @@ namespace msg
             if (new MySqlCommand($"UPDATE `user`, `chat` SET hasNewMsg = TRUE WHERE(user.id = chat.user_id AND chat.chat_id = {chatId} AND user.id != {UserId})", conn).ExecuteNonQuery() == 0)
                 return false;
             return true;
+        }
+        public int lastMsgDate = -1;
+        public ChatInfo displayNewDateIfRequired(DateTime date)
+        {
+            ChatInfo ch = null;
+            if (lastMsgDate != date.DayOfYear)
+            {
+                ch = new ChatInfo(date.ToString("dddd, dd MMMM"));
+            }
+            lastMsgDate = date.DayOfYear;
+            return ch;
         }
     }
 }
