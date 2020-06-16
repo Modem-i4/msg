@@ -172,5 +172,8 @@
   <ItemGroup>
     <None Include="Resources\Notification.wav" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\MySql.Data.dll" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
